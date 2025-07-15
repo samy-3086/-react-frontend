@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState('Loading...')
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/')
+    fetch('https://fastapi-backend-sbk4.onrender.com/')
       .then(response => response.json())
       .then(data => setMessage(data.message))
       .catch(error => setMessage('Error fetching data'))
