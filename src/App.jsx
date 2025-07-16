@@ -4,13 +4,30 @@ function App() {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({ name:'', brand:'', category:'', price:'', image_url:'' });
 
-  const api = "https://fastapi-backend-sbk4.onrender.com"; // change to Render URL after deploy
+  const api = "https://fastapi-backend-sbk4.onrender.com";
 
-  useEffect(() => { fetch(api).then(r=>r.json()).then(setProducts); }, []);
+  // fetch product list from correct endpoint
+  useEffect(() => {
+    fetch(api+"/list_products")
+      .then(r=>r.json())
+      .then(setProducts);
+  }, []);
 
   const handleCreate = async () => {
-    await fetch(api+"?"+new URLSearchParams(form), { method:"POST" });
-    const res = await fetch(api); setProducts(await res.json());
+    await fetch(api+"/add_product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        brand: form.brand,
+        category: form.category,
+        price: parseFloat(form.price),
+        image_url: form.image_url
+      })
+    });
+    // refetch products
+    const res = await fetch(api+"/list_products");
+    setProducts(await res.json());
   }
 
   return (
@@ -25,10 +42,18 @@ function App() {
       <table>
         <thead><tr><th>ID</th><th>Name</th><th>Brand</th><th>Price</th></tr></thead>
         <tbody>
-          {products.map(p=><tr key={p.id}><td>{p.id}</td><td>{p.name}</td><td>{p.brand}</td><td>{p.price}</td></tr>)}
+          {products.map(p=>(
+            <tr key={p.id}>
+              <td>{p.id}</td>
+              <td>{p.name}</td>
+              <td>{p.brand}</td>
+              <td>{p.price}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
+
 export default App;
