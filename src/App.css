@@ -1,44 +1,58 @@
-/* src/App.css */
+/* Container styles */
 .container {
   max-width: 800px;
   margin: auto;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   padding: 20px;
-  font-family: sans-serif;
 }
 
+/* Header title */
 h1 {
+  color: #1877f2;  /* Facebook-like blue */
   text-align: center;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   margin-bottom: 20px;
 }
 
-input {
+/* Form styles */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form input {
+  flex: 1;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button {
-  padding: 10px;
-  background: teal;
+/* Buttons */
+.form button {
+  padding: 8px 12px;
+  background-color: #1877f2;
   color: white;
   border: none;
-  cursor: pointer;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-button:hover {
-  background: #006666;
+.form button:hover {
+  background-color: #145db2;
 }
 
+/* Message paragraph */
+p {
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
@@ -47,11 +61,43 @@ th, td {
   text-align: left;
 }
 
+th {
+  background-color: #f0f2f5;  /* Light header */
+}
+
+/* Image in table */
 img {
+  width: 50px;
   border-radius: 4px;
 }
 
-.message {
-  margin-bottom: 10px;
-  color: green;
+/* Action buttons (edit/delete) */
+td button {
+  margin-right: 5px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+td button:hover {
+  opacity: 0.8;
+}
+
+td button:first-child {
+  background-color: #ffc107;  /* Edit - yellow */
+  color: black;
+}
+
+td button:last-child {
+  background-color: #dc3545;  /* Delete - red */
+  color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+  }
 }
