@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-const api = "https://your-backend-domain"; // e.g., render or railway backend
+const api = "https://fastapi-backend-sbk4.onrender.com"; // e.g., render or railway backend
 
 export default function App() {
   const [products, setProducts] = useState([]);
